@@ -11,14 +11,8 @@
 //player rock beats comp scissors correctly
 //player and comp rock draws correctly
 
+playGame();
 
-let humanScore = 0;
-let computerScore = 0;
-
-playRound();
-
-console.log(humanScore);
-console.log(computerScore);
 
 function getComputerChoice(){
     let choice = Math.random();
@@ -44,23 +38,44 @@ function getHumanChoice(){
 function playRound(humanChoice, computerChoice){
     let humChoice = getHumanChoice();
     let compChoice = getComputerChoice();
+    let win = false;
+
     console.log("Player chose: "+ humChoice);
     console.log("Computer chose: " + compChoice);
+
     if(humChoice === compChoice){
         console.log("Draw! Try again!");
+        win = null;
     }else if(humChoice == "rock" && compChoice == "scissors"){
         console.log("You win! Rock beats scissors!")
-        humanScore++;
+        win = true;
    } else if (humChoice == "scissors" && compChoice == "paper"){
         console.log("You win! Scissors beats paper!");
-        humanScore++;
+        win = true;
    } else if (humChoice == "paper" && compChoice == "rock"){
         console.log ("You win! Paper beats rock!");
-        humanScore++;
+        win = true;
    }else {
         console.log("You lose! " + compChoice + " beats " + humChoice + "! :( Try again!");
-        computerScore++;
    }
-
+   return win;
 }
 
+function playGame(score){
+    let humanScore = 0;
+    let computerScore = 0;
+
+    for(let i = 0; i <5; i++){
+        let win = playRound();
+        if (win == true){
+            humanScore++;
+        }else if (win == false){
+            computerScore++;
+        }
+        console.log("i is "+i);
+    }    
+
+    console.log("Human score is "+humanScore);
+   console.log("Computer score is "+computerScore);
+    
+}
