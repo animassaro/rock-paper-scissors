@@ -6,6 +6,7 @@
 const btnRock = document.getElementById("rock");
 const btnPaper = document.getElementById("paper");
 const btnScissors = document.getElementById("scissors");
+const results = document.getElementById("results");
 
 
 function getComputerChoice(){
@@ -39,24 +40,38 @@ function getHumanChoice(){
 
 function playRound(humChoice, compChoice){
     let win = false;
+    const choices = document.createElement("p");
+    const resultsTxt = document.createElement("p");
     compChoice = getComputerChoice();
 
+    results.appendChild(choices);
+    choices.textContent = "Player selected " + humChoice + " and Computer selected " + compChoice + ".";
     console.log("Player selected " + humChoice);
     console.log("Computer selected " + compChoice);
     
     if(humChoice === compChoice){
+        results.appendChild(resultsTxt);
+        resultsTxt.textContent = "Draw! Try again!";
         console.log("Draw! Try again!");
         win = null;
     }else if(humChoice == "rock" && compChoice == "scissors"){
+        results.appendChild(resultsTxt);
+        resultsTxt.textContent = "You win! Rock beats scissors!";
         console.log("You win! Rock beats scissors!")
         win = true;
    } else if (humChoice == "scissors" && compChoice == "paper"){
+        results.appendChild(resultsTxt);
+        resultsTxt.textContent = "You win! Scissors beats paper!";
         console.log("You win! Scissors beats paper!");
         win = true;
    } else if (humChoice == "paper" && compChoice == "rock"){
+        results.appendChild(resultsTxt);
+        resultsTxt.textContent = "You win! Paper beats rock!";
         console.log ("You win! Paper beats rock!");
         win = true;
    }else {
+        results.appendChild(resultsTxt);
+        resultsTxt.textContent = "You lose! " + compChoice + " beats " + humChoice + "! :( Try again!";
         console.log("You lose! " + compChoice + " beats " + humChoice + "! :( Try again!");
    }
    return win;
