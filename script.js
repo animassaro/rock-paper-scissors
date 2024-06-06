@@ -1,17 +1,11 @@
-//Get player choice
-//Get computer choice
-//Compare choices
-//If player wins, congratulate
-//If computer wins, try again
-
-//saying "you lose, paper beats rock" when computer picks scissors andplayer picks rock. should be player wins.
-//saying draw when player chooses rock and computer chooses paper.
-//player paper vs comp rock draws incorrectly
-//player peaper vs comp rock shows win, but against scissors
-//player rock beats comp scissors correctly
-//player and comp rock draws correctly
-
-playGame();
+//create a button for each choice
+//if rock is clicked, store this selection in a variable
+//if paper is clicked, store this selection in a variable
+//if scissors is clicked, store this selection in a variable
+//return this variable to the 'play game' function
+const btnRock = document.getElementById("rock");
+const btnPaper = document.getElementById("paper");
+const btnScissors = document.getElementById("scissors");
 
 
 function getComputerChoice(){
@@ -30,19 +24,26 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let input = prompt("Rock, paper, or scissors?");
-    input = input.toLowerCase();
-    return input;
+    btnRock.addEventListener('click', function(){
+        playRound("rock");
+    })
+
+    btnPaper.addEventListener('click', function(){
+        playRound("paper");
+    })
+
+    btnScissors.addEventListener('click', function(){
+        playRound("scissors");
+    })
 }
 
-function playRound(humanChoice, computerChoice){
-    let humChoice = getHumanChoice();
-    let compChoice = getComputerChoice();
+function playRound(humChoice, compChoice){
     let win = false;
+    compChoice = getComputerChoice();
 
-    console.log("Player chose: "+ humChoice);
-    console.log("Computer chose: " + compChoice);
-
+    console.log("Player selected " + humChoice);
+    console.log("Computer selected " + compChoice);
+    
     if(humChoice === compChoice){
         console.log("Draw! Try again!");
         win = null;
@@ -61,21 +62,26 @@ function playRound(humanChoice, computerChoice){
    return win;
 }
 
+getHumanChoice();
+
+/*
+
+
+playRound();
 function playGame(score){
     let humanScore = 0;
     let computerScore = 0;
 
-    for(let i = 0; i <5; i++){
+    //for(let i = 0; i <5; i++){
         let win = playRound();
         if (win == true){
             humanScore++;
         }else if (win == false){
             computerScore++;
         }
-        console.log("i is "+i);
-    }    
+    //}    
 
     console.log("Human score is "+humanScore);
-   console.log("Computer score is "+computerScore);
+    console.log("Computer score is "+computerScore);
     
-}
+}*/
