@@ -1,13 +1,13 @@
-//create a button for each choice
-//if rock is clicked, store this selection in a variable
-//if paper is clicked, store this selection in a variable
-//if scissors is clicked, store this selection in a variable
-//return this variable to the 'play game' function
+
+//announce winner
+
+
 const btnRock = document.getElementById("rock");
 const btnPaper = document.getElementById("paper");
 const btnScissors = document.getElementById("scissors");
 const results = document.getElementById("results");
-
+const playerScore = document.getElementById("pScore");
+const cpuScore = document.getElementById("cScore");
 
 function getComputerChoice(){
     let choice = Math.random();
@@ -39,64 +39,52 @@ function getHumanChoice(){
 }
 
 function playRound(humChoice, compChoice){
-    let win = false;
+   
     const choices = document.createElement("p");
     const resultsTxt = document.createElement("p");
     compChoice = getComputerChoice();
 
     results.appendChild(choices);
     choices.textContent = "Player selected " + humChoice + " and Computer selected " + compChoice + ".";
-    console.log("Player selected " + humChoice);
-    console.log("Computer selected " + compChoice);
-    
+
     if(humChoice === compChoice){
         results.appendChild(resultsTxt);
         resultsTxt.textContent = "Draw! Try again!";
-        console.log("Draw! Try again!");
-        win = null;
     }else if(humChoice == "rock" && compChoice == "scissors"){
         results.appendChild(resultsTxt);
         resultsTxt.textContent = "You win! Rock beats scissors!";
-        console.log("You win! Rock beats scissors!")
-        win = true;
+        
    } else if (humChoice == "scissors" && compChoice == "paper"){
         results.appendChild(resultsTxt);
         resultsTxt.textContent = "You win! Scissors beats paper!";
-        console.log("You win! Scissors beats paper!");
-        win = true;
    } else if (humChoice == "paper" && compChoice == "rock"){
         results.appendChild(resultsTxt);
         resultsTxt.textContent = "You win! Paper beats rock!";
-        console.log ("You win! Paper beats rock!");
-        win = true;
    }else {
         results.appendChild(resultsTxt);
         resultsTxt.textContent = "You lose! " + compChoice + " beats " + humChoice + "! :( Try again!";
-        console.log("You lose! " + compChoice + " beats " + humChoice + "! :( Try again!");
    }
-   return win;
 }
 
 getHumanChoice();
 
-/*
-
-
-playRound();
 function playGame(score){
     let humanScore = 0;
     let computerScore = 0;
 
-    //for(let i = 0; i <5; i++){
+    let pValue = Number(playerScore.innerText);
+    let cValue = Number(cpuScore.innerText);
+    let newPValue = 0;
+    let newCValue = 0;
+
+    for(let i = 0; i <5; i++){
         let win = playRound();
         if (win == true){
-            humanScore++;
+            newPValue = pValue + 1;
+            playerScore.innerText = newPValue.toString();
         }else if (win == false){
-            computerScore++;
+            newCValue = cValue + 1;
+            cpuScore.innerText = newCValue.toString();
         }
-    //}    
-
-    console.log("Human score is "+humanScore);
-    console.log("Computer score is "+computerScore);
-    
-}*/
+    }       
+}
